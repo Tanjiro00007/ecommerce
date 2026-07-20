@@ -87,6 +87,7 @@ const seed = async () => {
   await mongoose.disconnect();
   process.exit(0);
 };
+module.exports = { sampleProducts };
 
 seed().catch((err) => {
   console.error(err);
