@@ -1,5 +1,4 @@
 const express = require("express");
-express.set("trust proxy", 1);
 const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
@@ -16,6 +15,7 @@ const orderRoutes = require("./routes/orderRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
 
 const app = express();
+app.set("trust proxy", 1);
 
 // Security & core middleware
 app.use(helmet());
