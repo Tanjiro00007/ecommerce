@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-line;
+  }
+  body {
+    @apply bg-paper text-ink;
+  }
+  ::selection {
+    @apply bg-moss-100 text-moss-700;
+  }
+  :focus-visible {
+    outline: 2px solid #5c7a52;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-ink text-paper px-5 py-3 rounded-sm font-medium tracking-wide hover:bg-moss-700 transition-colors disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 border border-ink/20 text-ink px-5 py-3 rounded-sm font-medium hover:border-ink transition-colors disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+  .input-field {
+    @apply w-full border border-line bg-white px-4 py-3 rounded-sm text-ink placeholder:text-ink/40 focus:border-moss-500 outline-none transition-colors;
+  }
+  .eyebrow {
+    @apply text-xs uppercase tracking-[0.2em] text-moss-600 font-mono;
+  }
+}
