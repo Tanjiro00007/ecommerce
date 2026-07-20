@@ -40,6 +40,22 @@ app.get("/api/health", (req, res) => {
   res.status(200).json({ success: true, message: "API is healthy" });
 });
 
+// One-time seed route — protected by a secret key, remove after use
+app.get("/api/seed", async (req, res) => {
+  if (req.query.secret !== process.env.SEED_SECRET) {
+    return res.status(401).json({ success: false, message: "Unauthorized" });
+  }
+  try {
+    const Product = require("./models/Product");
+    const sampleProducts = require("./seed/seedProducts.js").sampleProducts;
+    await Product.deleteMany({});
+    await Product.insertMany(sampleProducts);
+    res.json({ success: true, message: `Seeded ${sampleProducts.length} products` });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
+
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
